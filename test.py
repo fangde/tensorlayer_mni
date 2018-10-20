@@ -16,13 +16,14 @@ class BasicLayer(object):
         self.name=name
 
 
-        graphContext[self.name]=self
+        graphContext['vertex'][self.name]=self
 
         print "basic"
 
-    def get_all_layers():
+    def get_all_layers(self):
 
-        f
+        for k in graphContext['vertex'].iterkeys():
+            print k
 
 
 
@@ -32,15 +33,30 @@ class SimpleLayer(BasicLayer):
         self.weight=100
         super(SimpleLayer,self).__init__(name)
 
+    def addInput(self,input):
+        graphContext['edges'].update({input.name:self.name})
+
 
 
 if  __name__=='__main__':
     
 
-    t=SimpleLayer('what')
+    l1=SimpleLayer('what')
+    l2=SimpleLayer('disk')
+
+    l2.addInput(l1)
 
 
-    print t
+
+
+
+
+    l2.get_all_layers()
+    l1.get_all_layers()
+
+
+
+
 
 
     
